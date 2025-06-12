@@ -1,7 +1,7 @@
 package com.example.mini_lms_backend.controller;
 
-import com.example.mini_lms_backend.dto.UserLoginRequest;
-import com.example.mini_lms_backend.dto.UserRegisterRequest;
+import com.example.mini_lms_backend.dto.UserLoginRequestDTO;
+import com.example.mini_lms_backend.dto.UserRegisterRequestDTO;
 import com.example.mini_lms_backend.service.UserService;
 import com.example.mini_lms_backend.security.JwtUtil;
 import jakarta.validation.Valid;
@@ -22,13 +22,13 @@ public class AuthController {
     private final JwtUtil jwtUtil;
 
     @PostMapping("/register")
-    public ResponseEntity<String> register(@Valid @RequestBody UserRegisterRequest request) {
+    public ResponseEntity<String> register(@Valid @RequestBody UserRegisterRequestDTO request) {
         userService.registerUser(request);
         return ResponseEntity.ok("User registered successfully");
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@Valid @RequestBody UserLoginRequest request) {
+    public ResponseEntity<String> login(@Valid @RequestBody UserLoginRequestDTO request) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword())
         );

@@ -1,6 +1,6 @@
 package com.example.mini_lms_backend.service.impl;
 
-import com.example.mini_lms_backend.dto.UserRegisterRequest;
+import com.example.mini_lms_backend.dto.UserRegisterRequestDTO;
 import com.example.mini_lms_backend.entity.Role;
 import com.example.mini_lms_backend.entity.User;
 import com.example.mini_lms_backend.repository.RoleRepository;
@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public void registerUser(UserRegisterRequest request) {
+    public void registerUser(UserRegisterRequestDTO request) {
         if (userRepository.existsByUsername(request.getUsername())) {
             throw new RuntimeException("Username is already taken");
         }
