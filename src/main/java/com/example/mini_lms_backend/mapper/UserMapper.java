@@ -1,13 +1,24 @@
 package com.example.mini_lms_backend.mapper;
 
-import com.example.mini_lms_backend.dto.UserDTO;
+import com.example.mini_lms_backend.dto.UserResponseDTO;
 import com.example.mini_lms_backend.entity.User;
+import com.example.mini_lms_backend.entity.Role;
+
+import java.util.stream.Collectors;
 
 public class UserMapper {
-    public static User toEntity(UserDTO dto) {
-        User user = new User();
-        user.setUsername(dto.getUsername());
-        user.setPassword(dto.getPassword());
-        return user;
+
+    public static UserResponseDTO toDTO(User user) {
+        if (user == null) return null;
+
+        return UserResponseDTO.builder()
+                .id(user.getId())
+                .username(user.getUsername())
+                .email(user.getEmail())
+                .roles(user.getRoles()
+                        .stream()
+                        .map(Role::getName)
+                        .collect(Collectors.toSet()))
+                .build();
     }
 }
