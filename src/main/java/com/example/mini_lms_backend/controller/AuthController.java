@@ -3,7 +3,7 @@ package com.example.mini_lms_backend.controller;
 import com.example.mini_lms_backend.dto.UserLoginRequestDTO;
 import com.example.mini_lms_backend.dto.UserRegisterRequestDTO;
 import com.example.mini_lms_backend.service.UserService;
-import com.example.mini_lms_backend.security.JwtUtil;
+import com.example.mini_lms_backend.security.JWTUtil;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +19,7 @@ public class AuthController {
 
     private final UserService userService;
     private final AuthenticationManager authenticationManager;
-    private final JwtUtil jwtUtil;
+    private final JWTUtil jwtUtil;
 
     @PostMapping("/register")
     public ResponseEntity<String> register(@Valid @RequestBody UserRegisterRequestDTO request) {

@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-public class JwtUtil {
+public class JWTUtil {
 
     private static final long EXPIRATION_TIME = 1000 * 60 * 60 * 10; // 10 hours
 
