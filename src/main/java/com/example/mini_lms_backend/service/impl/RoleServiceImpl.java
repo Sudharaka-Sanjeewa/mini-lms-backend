@@ -3,28 +3,28 @@ package com.example.mini_lms_backend.service.impl;
 import com.example.mini_lms_backend.entity.Role;
 import com.example.mini_lms_backend.repository.RoleRepository;
 import com.example.mini_lms_backend.service.RoleService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
+@RequiredArgsConstructor
 public class RoleServiceImpl implements RoleService {
 
     private final RoleRepository roleRepository;
 
-    @Autowired
-    public RoleServiceImpl(RoleRepository roleRepository) {
-        this.roleRepository = roleRepository;
-    }
-
     @Override
-    public Role saveRole(Role role) {
+    public Role createRole(String roleName) {
+        if (roleRepository.existsByName(roleName)) {
+            throw new RuntimeException("Role already exists: " + roleName);
+        }
+        Role role = new Role();
+        role.setName(roleName);
         return roleRepository.save(role);
     }
 
     @Override
-    public Optional<Role> findByName(String name) {
-        return roleRepository.findByName(name);
+    public Role getRoleByName(String roleName) {
+        return roleRepository.findByName(roleName)
+                .orElseThrow(() -> new RuntimeException("Role not found: " + roleName));
     }
 }
