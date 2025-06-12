@@ -1,7 +1,5 @@
 package com.example.mini_lms_backend.security;
 
-import com.example.mini_lms_backend.security.UserDetailsServiceImpl;
-import com.example.mini_lms_backend.security.JwtUtil;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
