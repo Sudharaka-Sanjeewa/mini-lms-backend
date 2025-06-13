@@ -7,6 +7,7 @@ import lombok.Data;
 @Data
 public class UserRegisterRequestDTO {
 
+    // Getters and setters
     @NotBlank(message = "Username is required")
     private String username;
 
